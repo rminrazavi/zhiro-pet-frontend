@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ================================
+     GYRO PET — Brand / Figma Tokens
+     ================================ */
+
+  /* Colors */
+  --brand-primary: #d96b3b;
+  --brand-secondary: #8faf8b;
+  --brand-accent: #e8b84a;
+  --brand-background: #fff4df;
+  --brand-surface: #ffffff;
+  --brand-surface-muted: #f3e5cc;
+  --brand-foreground: #2f2925;
+  --brand-border: #3b3028;
+  --brand-border-subtle: rgb(59 48 40 / 15%);
+  --brand-pink: #e8a6a1;
+
+  /* Layout */
+  --layout-container: 1200px;
+
+  /* Radius */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-hero: 2.5rem;
+  --radius-pill: 9999px;
+
+  /* Neo-Brutalist shadows */
+  --shadow-brutal-sm: 2px 2px 0 var(--brand-border);
+  --shadow-brutal: 4px 4px 0 var(--brand-border);
+  --shadow-brutal-hover: 6px 6px 0 var(--brand-border);
+  --shadow-brutal-lg: 10px 10px 0 var(--brand-border);
+  --shadow-brutal-nav: 0 -4px 0 var(--brand-border);
+
+  /* Section spacing */
+  --section-space-sm: 2rem;
+  --section-space-md: 3rem;
+  --section-space-lg: 5rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-primary: var(--brand-primary);
+  --color-secondary: var(--brand-secondary);
+  --color-accent: var(--brand-accent);
+
+  --color-background: var(--brand-background);
+  --color-surface: var(--brand-surface);
+  --color-surface-muted: var(--brand-surface-muted);
+
+  --color-foreground: var(--brand-foreground);
+  --color-border: var(--brand-border);
+  --color-border-subtle: var(--brand-border-subtle);
+
+  --color-pink: var(--brand-pink);
+
+  /* Typography */
+  --font-sans: var(--font-vazirmatn);
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  /* Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-hero: var(--radius-hero);
+  --radius-pill: var(--radius-pill);
+
+  /* Shadows */
+  --shadow-brutal-sm: var(--shadow-brutal-sm);
+  --shadow-brutal: var(--shadow-brutal);
+  --shadow-brutal-hover: var(--shadow-brutal-hover);
+  --shadow-brutal-lg: var(--shadow-brutal-lg);
+  --shadow-brutal-nav: var(--shadow-brutal-nav);
+
+  /* Container */
+  --container-max: var(--layout-container);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  direction: rtl;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background: var(--brand-background);
+  color: var(--brand-foreground);
+  font-family: var(--font-vazirmatn), sans-serif;
+}
+
+* {
+  border-color: var(--brand-border-subtle);
+}
+
+::selection {
+  background: var(--brand-accent);
+  color: var(--brand-foreground);
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+[role="button"] {
+  cursor: pointer;
 }
