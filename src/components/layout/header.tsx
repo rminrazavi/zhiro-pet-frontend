@@ -1,29 +1,68 @@
-import { Bell, Heart, Search, ShoppingCart, UserRound } from "lucide-react";
+import {
+  MagnifyingGlassIcon,
+  ShoppingCartIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 
-import { DesktopNavigation } from "./desktop-navigation";
+import { AnnouncementBanner } from "./announcement-banner";
+import { DesktopNavigation } from "./desktop-navigation/desktop-navigation";
 import { Logo } from "./logo";
-
-const CONTAINER = "mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-4";
+import { MobileHeader } from "./mobile-header";
 
 function HeaderAction({
   label,
   children,
   badge,
+  text,
 }: {
   label: string;
   children: React.ReactNode;
   badge?: string;
+  text?: string;
 }) {
   return (
     <button
       type="button"
       aria-label={label}
-      className="relative flex size-10 items-center justify-center rounded-xl text-foreground transition-colors hover:bg-muted"
+      className="
+        relative
+        flex h-10 items-center gap-2
+        rounded-lg
+        border-2 border-border
+        bg-surface
+        px-2.5
+        text-foreground
+        shadow-brutal-sm
+        transition-all
+        hover:-translate-x-px
+        hover:-translate-y-px
+        hover:shadow-none
+        active:translate-x-0
+        active:translate-y-0
+      "
     >
       {children}
 
+      {text && (
+        <span className="hidden text-sm font-bold lg:inline">
+          {text}
+        </span>
+      )}
+
       {badge && (
-        <span className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full border-2 border-white bg-primary text-[9px] font-black leading-none text-primary-foreground">
+        <span
+          className="
+            absolute -right-2 -top-2
+            flex size-5 items-center justify-center
+            rounded-full
+            border-2 border-border
+            bg-primary
+            text-[10px]
+            font-black
+            leading-none
+            text-foreground
+          "
+        >
           {badge}
         </span>
       )}
@@ -33,68 +72,66 @@ function HeaderAction({
 
 export function Header() {
   return (
-    <header className="border-b-2 border-border bg-white">
-      {/* Desktop */}
-      <div className="hidden md:block">
-        {/* Row 1 */}
-        <div className={`${CONTAINER} flex items-center gap-6 py-4`}>
-          {/* Logo */}
-          <Logo />
+    <header className="bg-transparent py-3">
+      <AnnouncementBanner />
 
-          {/* Search */}
-          <div className="flex-1">
-            <div className="mx-auto max-w-[560px]">
-              <div className="flex h-11 overflow-hidden rounded-xl border-2 border-border bg-white shadow-brutal-sm">
-                <input
-                  type="search"
-                  placeholder="جستجو در محصولات، برندها و دسته‌بندی‌ها..."
-                  className="min-w-0 flex-1 bg-[#FFF4DF] px-4 text-right text-sm outline-none placeholder:text-foreground/40"
-                  aria-label="جستجو"
+      <div className="container-page">
+        <div
+          className="
+            relative
+            rounded-xl
+            border-2 border-border
+            bg-surface
+            shadow-brutal-lg
+          "
+        >
+          {/* Desktop */}
+          <div className="hidden h-[76px] items-center gap-5 px-5 md:flex">
+            {/* Logo */}
+            <div className="shrink-0">
+              <Logo />
+            </div>
+
+            {/* Navigation */}
+            <div className="min-w-0 flex-1 self-stretch">
+              <DesktopNavigation />
+            </div>
+
+            {/* Actions */}
+            <div className="flex shrink-0 items-center gap-2">
+              <HeaderAction label="جستجو">
+                <MagnifyingGlassIcon
+                  className="size-[19px]"
+                  strokeWidth={2.2}
+                  aria-hidden="true"
                 />
+              </HeaderAction>
 
-                <button
-                  type="button"
-                  aria-label="جستجو"
-                  className="flex w-12 shrink-0 items-center justify-center border-s-2 border-border bg-[#d96b3b] text-black transition-colors hover:bg-[#d96a3bc4]"
-                >
-                  <Search
-                    className="size-[18px]"
-                    strokeWidth={2}
-                    aria-hidden="true"
-                  />
-                </button>
-              </div>
+              <HeaderAction label="سبد خرید" badge="۳">
+                <ShoppingCartIcon
+                  className="size-[19px]"
+                  strokeWidth={2.2}
+                  aria-hidden="true"
+                />
+              </HeaderAction>
+
+              <HeaderAction
+                label="حساب کاربری"
+                text="حساب کاربری"
+              >
+                <UserCircleIcon
+                  className="size-[19px]"
+                  strokeWidth={2.2}
+                  aria-hidden="true"
+                />
+              </HeaderAction>
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex shrink-0 items-center gap-1">
-            <HeaderAction label="اعلان‌ها">
-              <Bell className="size-[19px]" strokeWidth={2} />
-            </HeaderAction>
-
-            <HeaderAction label="علاقه‌مندی‌ها">
-              <Heart className="size-[19px]" strokeWidth={2} />
-            </HeaderAction>
-
-            <HeaderAction label="سبد خرید" badge="۳">
-              <ShoppingCart className="size-[19px]" strokeWidth={2} />
-            </HeaderAction>
-
-            <HeaderAction label="حساب کاربری">
-              <UserRound className="size-[19px]" strokeWidth={2} />
-            </HeaderAction>
+          {/* Mobile */}
+          <div className="md:hidden">
+            <MobileHeader />
           </div>
-        </div>
-
-        {/* Row 2 */}
-        <DesktopNavigation />
-      </div>
-
-      {/* Mobile — Logo ONLY */}
-      <div className="md:hidden">
-        <div className={`${CONTAINER} flex items-center justify-center py-3`}>
-          <Logo />
         </div>
       </div>
     </header>

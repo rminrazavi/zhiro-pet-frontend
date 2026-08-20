@@ -1,40 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  /* ================================
-     GYRO PET — Brand / Figma Tokens
-     ================================ */
+/* =================================
+   MOPET — Brand Design Tokens
+   ================================= */
 
-  /* Colors */
-  --brand-primary: #d96b3b;
+:root {
+  /* Brand */
+  --brand-primary: #9fd0d7;
   --brand-secondary: #8faf8b;
   --brand-accent: #e8b84a;
-  --brand-background: #fff4df;
+
+  /* Surfaces */
+  --brand-background: #f7f3ea;
   --brand-surface: #ffffff;
-  --brand-surface-muted: #f3e5cc;
-  --brand-foreground: #2f2925;
-  --brand-border: #3b3028;
-  --brand-border-subtle: #000000;
+  --brand-surface-muted: #eee9de;
+
+  /* Ink */
+  --brand-foreground: #20252b;
+  --brand-border: #20252b;
+  --brand-border-subtle: #20252b;
+
+  /* Supporting */
   --brand-pink: #e8a6a1;
+  --brand-muted: #74736d;
 
   /* Layout */
   --layout-container: 1200px;
 
   /* Radius */
-  --radius-sm: 0.75rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.5rem;
-  --radius-hero: 2.5rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-hero: 1.5rem;
   --radius-pill: 9999px;
 
-  /* Neo-Brutalist shadows */
+  /* Retro / Neo-Brutalist Shadows */
   --shadow-brutal-sm: 2px 2px 0 var(--brand-border);
   --shadow-brutal: 4px 4px 0 var(--brand-border);
   --shadow-brutal-hover: 6px 6px 0 var(--brand-border);
-  --shadow-brutal-lg: 10px 10px 0 var(--brand-border);
-  --shadow-brutal-nav: 0 -4px 0 var(--brand-border);
+  --shadow-brutal-lg: 8px 8px 0 var(--brand-border);
 
-  /* Section spacing */
+  /* Section Spacing */
   --section-space-sm: 2rem;
   --section-space-md: 3rem;
   --section-space-lg: 5rem;
@@ -55,9 +61,11 @@
   --color-border-subtle: var(--brand-border-subtle);
 
   --color-pink: var(--brand-pink);
+  --color-muted: var(--brand-muted);
 
   /* Typography */
   --font-sans: var(--font-vazirmatn);
+
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
@@ -74,11 +82,33 @@
   --shadow-brutal: var(--shadow-brutal);
   --shadow-brutal-hover: var(--shadow-brutal-hover);
   --shadow-brutal-lg: var(--shadow-brutal-lg);
-  --shadow-brutal-nav: var(--shadow-brutal-nav);
 
-  /* Container */
+  /* Layout */
   --container-max: var(--layout-container);
 }
+
+/* =================================
+   Layout Utilities
+   ================================= */
+
+@utility container-page {
+  width: 100%;
+  max-width: var(--layout-container);
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
+
+/* =================================
+   Base
+   ================================= */
 
 html {
   direction: rtl;
@@ -100,6 +130,10 @@ body {
   color: var(--brand-foreground);
 }
 
+/* =================================
+   Interaction
+   ================================= */
+
 button,
 a,
 input,
@@ -111,4 +145,36 @@ select {
 button,
 [role="button"] {
   cursor: pointer;
+}
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@theme inline {
+  --animate-hero-progress: hero-progress 6s linear forwards;
+}
+
+.hero-progress {
+  width: 100%;
+  height: 3px;
+  border-top: 2px dashed var(--brand-border);
+  transform-origin: right center;
+  animation: hero-progress var(--hero-duration) linear forwards;
+}
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
 }

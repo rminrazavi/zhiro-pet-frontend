@@ -1,6 +1,11 @@
 "use client";
 
-import { Heart, ShoppingCart } from "lucide-react";
+import {
+  HeartIcon as HeartOutlineIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/24/outline";
+import { HeartIcon as HeartSolidIcon } from "@heroicons/react/24/solid";
+
 import { useState } from "react";
 
 import { IconButton } from "@/components/ui/icon-button";
@@ -9,11 +14,14 @@ type ProductActionsProps = {
   productName: string;
 };
 
-export function ProductActions({ productName }: ProductActionsProps) {
+export function ProductActions({
+  productName,
+}: ProductActionsProps) {
   const [liked, setLiked] = useState(false);
 
   return (
     <div className="flex items-center gap-2">
+      {/* Wishlist */}
       <IconButton
         label={
           liked
@@ -24,11 +32,29 @@ export function ProductActions({ productName }: ProductActionsProps) {
         onClick={() => setLiked((value) => !value)}
         className={liked ? "bg-pink" : undefined}
       >
-        <Heart className="size-4" fill={liked ? "currentColor" : "none"} />
+        {liked ? (
+          <HeartSolidIcon
+            className="size-4"
+            aria-hidden="true"
+          />
+        ) : (
+          <HeartOutlineIcon
+            className="size-4"
+            strokeWidth={2}
+            aria-hidden="true"
+          />
+        )}
       </IconButton>
 
-      <IconButton label={`افزودن ${productName} به سبد خرید`}>
-        <ShoppingCart className="size-4" />
+      {/* Add to cart */}
+      <IconButton
+        label={`افزودن ${productName} به سبد خرید`}
+      >
+        <ShoppingCartIcon
+          className="size-4"
+          strokeWidth={2}
+          aria-hidden="true"
+        />
       </IconButton>
     </div>
   );

@@ -1,16 +1,21 @@
+import Image from "next/image";
 import Link from "next/link";
-import { PawPrint } from "lucide-react";
 
 export function Logo() {
   return (
     <Link
       href="/"
-      aria-label="ژیرو پت"
-      className="inline-flex shrink-0 items-center gap-1.5 rounded-2xl border-2 border-border bg-primary px-4 py-2 text-primary-foreground shadow-brutal-sm"
+      aria-label="موپت"
+      className="inline-flex shrink-0 items-center"
     >
-      <PawPrint className="size-[18px]" aria-hidden="true" />
-
-      <span className="text-base font-black">ژیرو پت</span>
+      <Image
+        src="/mopet-logo.svg"
+        alt="موپت"
+        width={178}
+        height={50}
+        priority
+        className="block h-auto w-[130px] md:w-[178px]"
+      />
     </Link>
   );
 }
